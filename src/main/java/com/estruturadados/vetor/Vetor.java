@@ -22,6 +22,27 @@ public class Vetor {
         return false;
     }
     
+    // ( BUSCA )
+    public String busca(int posicao) {
+    	
+    	if( !(posicao >= 0 && posicao < tamanho) ) {
+    		throw new IllegalArgumentException("Posição inválida !");
+    	}
+    	
+    	return this.elementos[posicao];
+    }
+    
+    // ( BUSCA SOBRESCRITA - Busca Seguencial )
+    public int busca(String elemento) {
+    	
+    	for(int i = 0; i < this.tamanho; i++) {
+    		if(this.elementos[i].equals(elemento)) {
+    			return i;
+    		}
+    	}
+    	return -1;
+    }    
+    
     // ( GET TAMANHO )
     public int getTamanho() {
     	return this.tamanho;
