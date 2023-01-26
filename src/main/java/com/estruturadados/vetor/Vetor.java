@@ -15,11 +15,29 @@ public class Vetor {
         if(this.tamanho < elementos.length) {
             this.elementos[this.tamanho] = elemento;
             this.tamanho++;
-            System.out.println("O elemento \"" + elemento + "\" foi adicionado com sucesso !");
+            // System.out.println("O elemento \"" + elemento + "\" foi adicionado com sucesso !");
+            // System.out.println(elemento);
             return true;
         }
         System.out.println("O \"" + elemento + "\" não pode ser adicionado !");
         return false;
+    }
+    
+    // ( ADICIONA ELEMENTO EM QUALQUER POSIÇÃO )
+    public boolean adiciona(int posicao, String elemento) {
+        
+    	if( !(posicao >= 0 && posicao < tamanho) ) {
+    		throw new IllegalArgumentException("Posição inválida !");
+    	}
+    	
+    	// Mover todos os elementos.
+    	for( int i = this.tamanho - 1; i >= posicao; i--) {
+    		this.elementos[i+1] = this.elementos[i];
+    	}
+    	this.elementos[posicao] = elemento;
+    	this.tamanho++;
+    	
+    	return true;
     }
     
     // ( BUSCA )
