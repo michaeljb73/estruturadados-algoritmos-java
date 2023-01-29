@@ -12,6 +12,9 @@ public class Vetor {
 
     // ( ADICIONA )
     public boolean adiciona(String elemento) {
+    	
+    	aumentaCapacidade();
+    	
         if(this.tamanho < elementos.length) {
             this.elementos[this.tamanho] = elemento;
             this.tamanho++;
@@ -26,6 +29,8 @@ public class Vetor {
     // ( ADICIONA ELEMENTO EM QUALQUER POSIÇÃO )
     public boolean adiciona(int posicao, String elemento) {
         
+    	aumentaCapacidade();
+    	
     	if( !(posicao >= 0 && posicao < tamanho) ) {
     		throw new IllegalArgumentException("Posição inválida !");
     	}
@@ -66,6 +71,20 @@ public class Vetor {
     	return this.tamanho;
     }
     
+    // ( ADICIONAR CAPACIDADE DO VETOR )
+    private void aumentaCapacidade() {
+    	if( this.tamanho == this.elementos.length ) {
+    		String[] elementosNovos = new String[ this.elementos.length * 2];
+    		
+    		for( int i = 0; i < this.elementos.length; i++ ) {
+    			elementosNovos[i] = this.elementos[i];
+    		}
+    		
+    		this.elementos = elementosNovos;
+    		
+    	}
+    }
+    
     // ( TO STRING )
 	@Override
 	public String toString() {
@@ -74,10 +93,13 @@ public class Vetor {
 		
 		stringBuilder.append("[");
 		
-		for( String elemento: elementos ) {
-			if(elemento != null) {
-				stringBuilder.append(elemento);
-			}
+		for( int i = 0; i < this.tamanho - 1; i++) {
+				stringBuilder.append(elementos[i]);
+				stringBuilder.append(", ");
+		}
+		
+		if(this.tamanho > 0) {
+			stringBuilder.append(this.elementos[this.tamanho - 1]);
 		}
 		
 		stringBuilder.append("]");
